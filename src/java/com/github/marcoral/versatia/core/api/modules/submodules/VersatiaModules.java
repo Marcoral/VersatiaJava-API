@@ -1,20 +1,25 @@
 package com.github.marcoral.versatia.core.api.modules.submodules;
 
+import java.util.function.Consumer;
+
 import org.bukkit.plugin.java.JavaPlugin;
+
 import com.github.marcoral.versatia.core.api.VersatiaConstants;
 import com.github.marcoral.versatia.core.api.modules.VersatiaModule;
-import com.github.marcoral.versatia.core.api.modules.VersatiaModuleBuilder;
+import com.github.marcoral.versatia.core.api.modules.VersatiaModuleInitializer;
 import com.github.marcoral.versatia.core.api.tools.ExternalDependency;
+import com.github.marcoral.versatia.core.api.tools.VersatiaTools;
 
 
 public abstract class VersatiaModules {
 	/**
-	 * Creates instance of <code>VersatiaModuleBuilder</code> for specified plugin.
-	 * @param plugin Plugin that Versatia should create module builder for
-	 * @return Module builder associated with the specified plugin
+	 * Registers specified plugin as Versatia module, registers default submodules and regenerates its configuration files.
+	 * @param plugin Plugin that you want to register as Versatia's module
+	 * @param initialization Actions that should be taken in addition to default ones
 	 */
-    public static VersatiaModuleBuilder createBuilderFor(JavaPlugin plugin) {
-        return getInstance().createBuilderForImpl(plugin);
+    public static void build(JavaPlugin plugin, Consumer<VersatiaModuleInitializer> initialization) {
+    	VersatiaTools.unpackFiles(plugin, false);
+        getInstance().buildImpl(plugin, initialization);
     }
 
     /**
@@ -35,7 +40,7 @@ public abstract class VersatiaModules {
 
 
 
-    /* -------
+    /* -----------
      * BOILERPLATE
      * -------- */
     @ExternalDependency("INSTANCE")
@@ -46,7 +51,7 @@ public abstract class VersatiaModules {
         return INSTANCE;
     }
 
-    protected abstract VersatiaModuleBuilder createBuilderForImpl(JavaPlugin plugin);
+    protected abstract void buildImpl(JavaPlugin plugin, Consumer<VersatiaModuleInitializer> initialization);
     protected abstract void invalidateImpl(JavaPlugin plugin);
     protected abstract VersatiaModule getModuleImpl(String pluginName);
 }

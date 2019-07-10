@@ -1,20 +1,15 @@
 package com.github.marcoral.versatia.core.api.modules.commands;
 
 
-public interface VersatiaPlayerCommandFamilyBuilder extends VersatiaCommandBuilder {
-    @Override VersatiaPlayerCommandFamilyBuilder withPermission(String permission);
-    @Override VersatiaPlayerCommandFamilyBuilder withAliases(String... aliases);
-    
+public interface VersatiaPlayerCommandFamilyBuilder {
     /**
-     * @param name Name of commands family
+     * @param commandDescriptor Descriptor providing base informations about family
      * @return Player-only commands family builder of given name
      */
-    VersatiaPlayerCommandFamilyBuilder registerPlayerOnlyCommandsFamily(String name);
+    VersatiaPlayerCommandFamilyBuilder registerPlayerOnlyCommandsFamily(VersatiaCommand commandDescriptor);
     
     /**
-     * @param name Name of command
-     * @param handler Command invocation handler
-     * @return Player-only command builder of given name
+     * @param command Command to register
      */
-    VersatiaCommandBuilder registerPlayerOnlyCommand(String name, VersatiaPlayerCommandHandler handler);
+    void registerPlayerOnlyCommand(VersatiaPlayerCommand command);
 }

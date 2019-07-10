@@ -4,10 +4,10 @@ import com.github.marcoral.versatia.core.api.tools.ExternalDependency;
 
 
 public enum VersatiaColor {
-    BroadcastCasual("&&bc."), BroadcastCasualHighlighted("&&bch."),  BroadcastError("&&be."),  BroadcastErrorHighlighted("&&beh."),  BroadcastSuccess("&&bs."),  BroadcastSuccessHighlighted("&&bsh."),
-    PlayerCasual("&&pc."), PlayerCasualHighlighted("&&pch."),  PlayerError("&&pe."),  PlayerErrorHighlighted("&&peh."),  PlayerSuccess("&&ps."),  PlayerSuccessHighlighted("&&psh."),
-    PlayerCommandCasual("&&pcc."), PlayerCommandCasualHighlighted("&&pcch."),  PlayerCommandError("&&pce."),  PlayerCommandErrorHighlighted("&&pceh."),  PlayerCommandSuccess("&&pcs."), PlayerCommandSuccessHighlighted("&&pcsh."),
-    ConsoleCasual("&&cc."),  ConsoleCasualHighlighted("&&cch."),  ConsoleError("&&ce."),  ConsoleErrorHighlighted("&&ceh."),  ConsoleSuccess("&&cs."),  ConsoleSuccessHighlighted("&&csh.");
+    BroadcastCasual("&&bc."), BroadcastCasualHighlighted("&&bch."), BroadcastError("&&be."), BroadcastErrorHighlighted("&&beh."), BroadcastSuccess("&&bs."), BroadcastSuccessHighlighted("&&bsh."),
+    PlayerCasual("&&pc."), PlayerCasualHighlighted("&&pch."), PlayerError("&&pe."), PlayerErrorHighlighted("&&peh."), PlayerSuccess("&&ps."), PlayerSuccessHighlighted("&&psh."),
+    PlayerCommandCasual("&&pcc."), PlayerCommandCasualHighlighted("&&pcch."), PlayerCommandError("&&pce."), PlayerCommandErrorHighlighted("&&pceh."), PlayerCommandSuccess("&&pcs."), PlayerCommandSuccessHighlighted("&&pcsh."),
+    ConsoleCasual("&&cc."), ConsoleCasualHighlighted("&&cch."), ConsoleError("&&ce."), ConsoleErrorHighlighted("&&ceh."), ConsoleSuccess("&&cs."), ConsoleSuccessHighlighted("&&csh.");
 
     @ExternalDependency("Converter")
     private static ColorConverter converter;

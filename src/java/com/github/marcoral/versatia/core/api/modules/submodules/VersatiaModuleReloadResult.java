@@ -9,7 +9,12 @@ public interface VersatiaModuleReloadResult {
     Set<String> getReloadedSubmodulesNames();
     
     /**
-     * @return Submodule names which were requested to be reloaded, but were not found 
+     * @return Submodules names whose reloading resulted with error
+     */
+	Set<String> getSubmodulesNamesReloadingError();
+
+    /**
+     * @return Submodules names which were requested to be reloaded, but were not found 
      */
     Set<String> getUnknownSubmodulesNames();
 }
