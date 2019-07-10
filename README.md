@@ -117,5 +117,7 @@ If you register your plugin as Versatia module (see *Setup* above), Versatia wil
 
 
 `VersatiaCommandHandlerChangedEvent` - Called when command overrides another, with lower priority.
+
 `VersatiaModuleLoadedEvent` - Called when module gets loaded
+
 `VersatiaModuleReloadedEvent` - Called when module (or one of its submodules) gets reloaded.
