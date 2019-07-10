@@ -99,9 +99,10 @@ Versatia enforces division of module (central unit) to many submodules. Such str
 
 ### [Commands system](./help_pages/commands.md)
 
-VersatiaCore provides very convinient and
- 
-t is otn h cas tha man th messages arehardcode in plugin and ecme  imossle to ang at thertie a ha o ae gone.
+VersatiaCore provides very convinient and handy commands API. It is especially useful if you have commands with many nested subcommands (like `/<pluginname> <command> <subcommand> <argument>`).
+The standard approach would be registering command named `<pluginname>` and then manually checking whether arguments are specified and if they match known commands.
+Also, you would have to remember about adding command to *plugin.yml*.
+With VersatiaCore all the above problems are gone.
 
 
 ### [Configuration tools](./help_pages/configuration_tools.md)
