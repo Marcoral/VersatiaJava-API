@@ -1,5 +1,9 @@
 package com.github.marcoral.versatia.core.api.modules;
 
+import java.util.function.Consumer;
+
+import org.bukkit.plugin.java.JavaPlugin;
+
 public interface VersatiaModuleInitializer extends UnloadedModuleAccessSave {
     /**
      * Overwrites every configuration files in plugin's directory. Use with caution.

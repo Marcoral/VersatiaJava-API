@@ -9,15 +9,15 @@ It allows you to throw exception with informative message rather than plain `Nul
 	public class YourPluginClass extends VersatiaPlugin {
 		@Override
 		protected void onVersatiaEnable(VersatiaModuleInitializer initializer) { 
-			VersatiaConfigurationProcessor processor = initializer.getConfig("myconfigs/example.yml").getProcessor();
-			boolean flag = processor.getBooleanOrThrow("Flag", "Oops, someone captured the flag!");
-			processor = processor.moveToSectionOrThrow("NextSection", "Where is the NextSection...?");
-			String secretMessage = processor.getColoredStringOrThrow("SecretMessage", "You don't keep secrets in config?");
-			processor = processor.moveToSectionOrThrow("EvenDeeperSection", "Where is the NextSection.EvenDeeperSection?!");
-			String bottomHierarchyMessage = processor.getStringOrThrow("BottomString", "Whoa, bottom-less config! Ha ha.");
+			VersatiaConfigurationProcessor config = initializer.getConfigProcessor("myconfigs/example.yml");
+			boolean flag = config.getBooleanOrThrow("Flag", "Oops, someone captured the flag!");
+			config = config.moveToSectionOrThrow("NextSection", "Where is the NextSection...?");
+			String secretMessage = config.getColoredStringOrThrow("SecretMessage", "You don't keep secrets in config?");
+			config.moveToSectionOrThrow("EvenDeeperSection", "Where is the NextSection.EvenDeeperSection?!");
+			String bottomHierarchyMessage = config.getStringOrThrow("BottomString", "Whoa, bottom-less config! Ha ha.");
 
 			//You can even load MessageDescriptors!
-			VersatiaMessageDescriptor messageTemplate = processor.getMessageDescriptorOrThrow("WhoaDescriptor", "No message template?!");
+			VersatiaMessageDescriptor messageTemplate = config.getMessageDescriptorOrThrow("WhoaDescriptor", "No message template?!");
 		}
 	}
 
@@ -51,11 +51,11 @@ Versatia comes with more elegant solution here. Look at the example:
 	public class YourPluginClass extends VersatiaPlugin {
 		@Override
 		protected void onVersatiaEnable(VersatiaModuleInitializer initializer) { 
-			VersatiaConfigurationProcessor processor = initializer.getConfig("myconfigs/example.yml").getProcessor();
-			String databaseURL = processor.getStringOrThrow("DatabaseURL, "URL not found!");
-			processor.ifSectionPresent("CustomProperties", subsection -> {
-				processor.ifIntPresent("MaximumPoolSize", this::setMaximumPoolSize);
-				processor.ifBooleanPresent("CachePreparedStatements", this::setPreparedStatementsCatching);
+			VersatiaConfigurationProcessor config = initializer.getConfigProcessor("myconfigs/example.yml");
+			String databaseURL = config.getStringOrThrow("DatabaseURL, "URL not found!");
+			config.ifSectionPresent("CustomProperties", subsection -> {
+				config.ifIntPresent("MaximumPoolSize", this::setMaximumPoolSize);
+				config.ifBooleanPresent("CachePreparedStatements", this::setPreparedStatementsCatching);
 			});
 		}
 		

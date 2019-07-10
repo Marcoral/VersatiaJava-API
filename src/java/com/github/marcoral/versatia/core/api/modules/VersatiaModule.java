@@ -1,6 +1,7 @@
 package com.github.marcoral.versatia.core.api.modules;
 
 
+import com.github.marcoral.versatia.core.api.configuration.VersatiaConfigurationFile;
 import com.github.marcoral.versatia.core.api.modules.messages.VersatiaMessageEntry;
 import com.github.marcoral.versatia.core.api.modules.submodules.VersatiaModuleReloadResult;
 
@@ -42,6 +43,12 @@ public interface VersatiaModule extends UnloadedModuleAccessSave {
      * @return Message template object
      */
     VersatiaMessageEntry getMessageTemplateEntry(String key);
+    
+    /**
+     * @param path Path to configuration file
+     * @return Object wrapping {@link org.bukkit.configuration.file.FileConfiguration} object created using specified path
+     */
+    VersatiaConfigurationFile getConfig(String path);
 
     /**
      * Returns message template of specified key. 

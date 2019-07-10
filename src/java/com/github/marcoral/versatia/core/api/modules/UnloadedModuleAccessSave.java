@@ -2,7 +2,7 @@ package com.github.marcoral.versatia.core.api.modules;
 
 import java.util.function.BiConsumer;
 
-import com.github.marcoral.versatia.core.api.configuration.VersatiaConfigurationFile;
+import com.github.marcoral.versatia.core.api.configuration.VersatiaConfigurationProcessor;
 import com.github.marcoral.versatia.core.api.modules.commands.CommandPriority;
 import com.github.marcoral.versatia.core.api.modules.commands.VersatiaCommand;
 import com.github.marcoral.versatia.core.api.modules.commands.VersatiaCommandFamilyBuilder;
@@ -104,16 +104,17 @@ public interface UnloadedModuleAccessSave {
     void overwriteConfiguration();
     
     /**
-     * @param path Path to configuration file
-     * @return Object wrapping {@link org.bukkit.configuration.file.FileConfiguration} object created using specified path
-     */
-    VersatiaConfigurationFile getConfig(String path);
-    
-    
-    /**
      * @param loggerName Logger name
      * @return Logger object, which can be used for logging messages onto the console
      * @since 1.1
      */
     VersatiaLogger getLogger(String loggerName);
+    
+    /**
+     * Returns {@link VersatiaConfigurationProcessor} object wrapping configuration at specified path.
+     * Throws {@link NullPointerException} if file at specified path doesn't exist.
+     * @param path Path to configuration file
+     * @return {@link VersatiaConfigurationProcessor} object wrapping configuration at specified path
+     */
+    VersatiaConfigurationProcessor getConfigProcessor(String path);
 }
