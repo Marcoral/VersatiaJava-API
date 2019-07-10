@@ -4,7 +4,7 @@ import com.github.marcoral.versatia.core.api.modules.messages.VersatiaMessageDes
 
 public interface VersatiaLogger {
 	/**
-	 * @param priorityThreshold Messages priority threshold. If passed <code>null</code> {@link LoggingPriority.FINEST} will be used.
+	 * @param priorityThreshold Messages priority threshold. If passed <code>null</code> {@link LoggingPriority#FINEST} will be used.
 	 */
 	void setPriorityThreshold(LoggingPriority priorityThreshold);
 	

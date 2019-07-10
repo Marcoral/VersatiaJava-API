@@ -20,13 +20,13 @@ public interface VersatiaModule extends UnloadedModuleAccessSave {
     void unregisterRootCommand(String name);
 
     /**
-     * Calls {@link #reload()} method on every submodule.
+     * Calls {@link com.github.marcoral.versatia.core.api.modules.submodules.VersatiaSubmodule#reload()} method on every submodule.
      * @return Object which provides information about reloading result
      */
     VersatiaModuleReloadResult reloadEverySubmodule();
     
     /**
-     * Calls {@link #reload()} method on every submodule of requested name or belonging to group of such name.
+     * Calls {@link com.github.marcoral.versatia.core.api.modules.submodules.VersatiaSubmodule#reload()} method on every submodule of requested name or belonging to group of such name.
      * @param submodules Submodules/groups names to reload
      * @return Object which provides information about reloading result
      */

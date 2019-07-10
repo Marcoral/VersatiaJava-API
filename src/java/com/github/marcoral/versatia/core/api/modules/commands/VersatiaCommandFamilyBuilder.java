@@ -9,7 +9,7 @@ public interface VersatiaCommandFamilyBuilder extends VersatiaPlayerCommandFamil
     VersatiaCommandFamilyBuilder registerCommandsFamily(VersatiaCommand commandDescriptor);
     
     /**
-     * @param handler Command to register
+     * @param command Command to register
      */
     void registerCommand(VersatiaGenericCommand command);
 }

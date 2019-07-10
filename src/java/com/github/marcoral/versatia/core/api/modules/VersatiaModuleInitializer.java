@@ -10,7 +10,7 @@ public interface VersatiaModuleInitializer extends UnloadedModuleAccessSave {
 	
 	/**
 	 * Returns module which is being initialized.
-	 * Generally, you won't need to use this method, unless you call {@link #com.github.marcoral.versatia.core.api.modules.submodules.VersatiaModules.build(JavaPlugin, Consumer&lt;VersatiaModuleInitializer&gt;)} manually
+	 * Generally, you won't need to use this method, unless you call {@link com.github.marcoral.versatia.core.api.modules.submodules.VersatiaModules#build(JavaPlugin, Consumer) VersatiaModules.build(JavaPlugin, Consumer&lt;VersatiaModuleInitializer&gt;)} manually
 	 * @return Module which is being initialized
 	 */
 	VersatiaModule getUnderlyingModule();

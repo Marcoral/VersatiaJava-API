@@ -14,7 +14,7 @@ import com.github.marcoral.versatia.core.api.modules.submodules.VersatiaSubmodul
 
 public interface UnloadedModuleAccessSave {
 	/**
-	 * Registers specified module and calls {@link VersatiaSubmodule.reload()} on it.
+	 * Registers specified module and calls {@link VersatiaSubmodule#reload()} on it.
 	 * @param submodule Submodule to register
 	 */
     void addSubmodule(VersatiaSubmodule submodule);
@@ -29,7 +29,7 @@ public interface UnloadedModuleAccessSave {
     /**
      * Sets processor which may manually modify messages from message configs.
      * If passed <code>null</code> as a parameter, none will be used.
-     * Note that it will reload whole <b><i>messages</b></i> submodule.
+     * Note that it will reload whole <b><i>messages</i></b> submodule.
      * @param processor Processor to set
      */
     void setMessageTemplatesProcessor(BiConsumer<String, String> processor);
@@ -38,14 +38,12 @@ public interface UnloadedModuleAccessSave {
      * Registers root-level command of given name and priority.
      * @param command Command to register
      * @param priority Command priority
-     * @return Command builder object
      */
     void registerGenericCommand(VersatiaGenericCommand command, CommandPriority priority);
     
     /**
-     * Convenience method. Calls to {@link #registerGenericCommand(String, VersatiaGenericCommand, CommandPriority) registerGenericCommand(name, handler, CommandPriority.NORMAL)}.
+     * Convenience method. Calls to {@link #registerGenericCommand(VersatiaGenericCommand, CommandPriority) registerGenericCommand(handler, CommandPriority.NORMAL)}.
      * @param command Command to register
-     * @return Command builder object
      */
     default void registerGenericCommand(VersatiaGenericCommand command) {
         registerGenericCommand(command, CommandPriority.NORMAL);
@@ -55,14 +53,12 @@ public interface UnloadedModuleAccessSave {
      * Registers root-level player-only command of given name and priority.
      * @param command Command to register
      * @param priority Command priority
-     * @return Command builder object
      */
     void registerPlayerOnlyCommand(VersatiaPlayerCommand command, CommandPriority priority);
     
     /**
-     * Convenience method. Calls to {@link #registerPlayerOnlyCommand(String, VersatiaPlayerCommand, CommandPriority) registerPlayerOnlyCommand(name, handler, CommandPriority.NORMAL)}.
+     * Convenience method. Calls to {@link #registerPlayerOnlyCommand(VersatiaPlayerCommand, CommandPriority) registerPlayerOnlyCommand(handler, CommandPriority.NORMAL)}.
      * @param command Command to register
-     * @return Command builder object
      */
     default void registerPlayerOnlyCommand(VersatiaPlayerCommand command) {
         registerPlayerOnlyCommand(command, CommandPriority.NORMAL);
