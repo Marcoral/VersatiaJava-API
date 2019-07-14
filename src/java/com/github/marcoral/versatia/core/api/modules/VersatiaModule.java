@@ -1,6 +1,8 @@
 package com.github.marcoral.versatia.core.api.modules;
 
 
+import org.bukkit.plugin.Plugin;
+
 import com.github.marcoral.versatia.core.api.configuration.VersatiaConfigurationFile;
 import com.github.marcoral.versatia.core.api.modules.messages.VersatiaMessageEntry;
 import com.github.marcoral.versatia.core.api.modules.submodules.VersatiaModuleReloadResult;
@@ -61,4 +63,9 @@ public interface VersatiaModule extends UnloadedModuleAccessSave {
     	VersatiaMessageEntry entry = getMessageTemplateEntry(key);
     	return entry == null? null : entry.getTemplateString();
     }
+    
+    /**
+     * @return {@link Plugin} corresponding to this module
+     */
+    Plugin getCorrespondingPlugin();
 }

@@ -1,6 +1,7 @@
 package com.github.marcoral.versatia.core.api.modules.submodules;
 
 import java.util.function.Consumer;
+import java.util.stream.Stream;
 
 import org.bukkit.plugin.java.JavaPlugin;
 
@@ -37,6 +38,13 @@ public abstract class VersatiaModules {
     public static VersatiaModule getModule(String pluginName) {
         return getInstance().getModuleImpl(pluginName);
     }
+    
+    /**
+     * @return Stream of registered modules
+     */
+    public static Stream<? extends VersatiaModule> getModulesStream() {
+    	return getInstance().getModulesStreamImpl();
+    }
 
 
 
@@ -54,4 +62,5 @@ public abstract class VersatiaModules {
     protected abstract void buildImpl(JavaPlugin plugin, Consumer<VersatiaModuleInitializer> initialization);
     protected abstract void invalidateImpl(JavaPlugin plugin);
     protected abstract VersatiaModule getModuleImpl(String pluginName);
+    protected abstract Stream<? extends VersatiaModule> getModulesStreamImpl();
 }

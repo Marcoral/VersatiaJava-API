@@ -8,6 +8,9 @@ import com.github.marcoral.versatia.core.api.modules.submodules.VersatiaModules;
 public abstract class VersatiaPlugin extends JavaPlugin {
 	private VersatiaModule correspondingModule;
 	
+	/**
+	 * {@inheritDoc}
+	 */
     @Override
     public final void onEnable() {
         VersatiaModules.build(this, initializer -> {
@@ -17,6 +20,9 @@ public abstract class VersatiaPlugin extends JavaPlugin {
         afterBeingBuilded();
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public final void onDisable() {
         VersatiaModules.invalidate(this);

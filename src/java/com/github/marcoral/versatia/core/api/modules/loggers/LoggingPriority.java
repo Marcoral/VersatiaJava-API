@@ -1,5 +1,7 @@
 package com.github.marcoral.versatia.core.api.modules.loggers;
 
+import java.util.Locale;
+
 public enum LoggingPriority {
     FINEST(0),
     FINER(1),
@@ -13,7 +15,9 @@ public enum LoggingPriority {
     private String configName;
     private LoggingPriority(int level) {
         this.level = level;
-        this.configName = name().substring(0, 1).toUpperCase() + name().toLowerCase().substring(1);
+        
+        //Use Locale.ENGLISH to avoid possible bugs with turkish locale
+        this.configName = name().substring(0, 1).toUpperCase(Locale.ENGLISH) + name().toLowerCase(Locale.ENGLISH).substring(1);
     }
 
     /**
@@ -23,6 +27,9 @@ public enum LoggingPriority {
         return level;
     }
     
+    /**
+     * @return Corresponding config name
+     */
     public String getConfigName() {
     	return configName;
     }

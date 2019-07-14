@@ -4,5 +4,8 @@ import org.bukkit.entity.Player;
 
 
 public interface VersatiaPlayerCommandContext extends VersatiaCommandContext {
+	/**
+	 * {@inheritDoc}
+	 */
     @Override Player getExecutor();
 }

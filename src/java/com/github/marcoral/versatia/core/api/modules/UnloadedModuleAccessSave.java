@@ -9,6 +9,7 @@ import com.github.marcoral.versatia.core.api.modules.commands.VersatiaCommandFam
 import com.github.marcoral.versatia.core.api.modules.commands.VersatiaGenericCommand;
 import com.github.marcoral.versatia.core.api.modules.commands.VersatiaPlayerCommand;
 import com.github.marcoral.versatia.core.api.modules.commands.VersatiaPlayerCommandFamilyBuilder;
+import com.github.marcoral.versatia.core.api.modules.loggers.LoggingPriority;
 import com.github.marcoral.versatia.core.api.modules.loggers.VersatiaLogger;
 import com.github.marcoral.versatia.core.api.modules.submodules.VersatiaSubmodule;
 
@@ -106,9 +107,16 @@ public interface UnloadedModuleAccessSave {
     /**
      * @param loggerName Logger name
      * @return Logger object, which can be used for logging messages onto the console
-     * @since 1.1
      */
     VersatiaLogger getLogger(String loggerName);
+    
+    /**
+     * Logs message using default logger, but message template name will be searched in current module scope, rather than VersatiaCore's.
+	 * @param priority Logging priority
+	 * @param messageTemplateName Message template name from current module
+	 * @param args Message arguments
+     */
+    void log(LoggingPriority priority, String messageTemplateName, Object... args);
     
     /**
      * Returns {@link VersatiaConfigurationProcessor} object wrapping configuration at specified path.
