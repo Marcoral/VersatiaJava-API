@@ -12,13 +12,23 @@ import com.github.marcoral.versatia.core.api.modules.commands.VersatiaPlayerComm
 import com.github.marcoral.versatia.core.api.modules.loggers.LoggingPriority;
 import com.github.marcoral.versatia.core.api.modules.loggers.VersatiaLogger;
 import com.github.marcoral.versatia.core.api.modules.submodules.VersatiaSubmodule;
+import com.github.marcoral.versatia.core.api.tools.modules.VersatiaSubmoduleHandlerProvider;
 
 public interface UnloadedModuleAccessSave {
 	/**
-	 * Registers specified module and calls {@link VersatiaSubmodule#reload()} on it.
+	 * Registers specified submodule and calls {@link VersatiaSubmodule#reload()} on it.
 	 * @param submodule Submodule to register
 	 */
     void addSubmodule(VersatiaSubmodule submodule);
+    
+    /**
+     * Registers additional submodule with external handler
+     * @param <T> Type of submodule's interface
+     * @param handler Handler provider
+     * @param hardDepend If set to {@code true}, an {@code NullPointerException} be thrown if no provider is found in the con
+     * @return Returns instance of expected type or {@code null} if no provider is found
+     */
+    <T extends VersatiaSubmodule> T addServicedSubmodule(Class<? extends VersatiaSubmoduleHandlerProvider> handler, boolean hardDepend);
     
     /**
      * Groups given submodules, so as whole group can be reloaded as one submodule.

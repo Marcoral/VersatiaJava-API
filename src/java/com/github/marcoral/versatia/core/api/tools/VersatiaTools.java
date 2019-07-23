@@ -1,48 +1,24 @@
 package com.github.marcoral.versatia.core.api.tools;
 
-import com.github.marcoral.versatia.core.api.colors.VersatiaColor;
-import com.github.marcoral.versatia.core.api.configuration.VersatiaConfigurationFile;
-import com.github.marcoral.versatia.core.api.configuration.VersatiaConfigurationProcessor;
+import java.io.File;
 
 import org.bukkit.ChatColor;
 import org.bukkit.configuration.ConfigurationSection;
 import org.bukkit.plugin.Plugin;
 
 import com.github.marcoral.versatia.core.api.VersatiaConstants;
+import com.github.marcoral.versatia.core.api.colors.VersatiaColor;
+import com.github.marcoral.versatia.core.api.configuration.VersatiaConfigurationFile;
+import com.github.marcoral.versatia.core.api.configuration.VersatiaConfigurationProcessor;
+import com.github.marcoral.versatia.core.api.tools.modules.ModuleDevelopmentTools;
 
 public abstract class VersatiaTools {
-	/**
-	 * Injects value to field annotated with {@link com.github.marcoral.versatia.core.api.tools.ExternalDependency}
-	 * @param <T> expected type of returned value
-	 * @param containingClass Class containing annotated field
-	 * @param instance Instance to inject field to
-	 * @param fieldKey Annotation value
-	 * @param value Value to inject
-	 * @param fieldSurelyExists Whether you are sure that field exists
-	 * @throws NoBridgeFieldException Thrown if <code>fieldSurelyExists</code> parameter is set to <code>true</code>, but no field have been found
-	 */
-    public static <T> void injectExternalDependency(Class<? super T> containingClass, T instance, String fieldKey, Object value, boolean fieldSurelyExists) throws NoBridgeFieldException {
-        getInstance().injectExternalDependencyImpl(containingClass, instance, fieldKey, value, fieldSurelyExists);
-    }
-    
-	/**
-	 * Gets value from field annotated with {@link com.github.marcoral.versatia.core.api.tools.ExternalDependency}
-	 * @param <T> expected type of returned value
-	 * @param instance Instance to get field value from
-	 * @param keyOfExternal Annotation value
-	 * @return Returns value at requested bridge field
-	 * @throws RuntimeException Thrown if <code>fieldSurelyExists</code> parameter is set to <code>true</code>, but no field have been found
-	 */
-    public static <T> T getExternalField(Object instance, String keyOfExternal) throws NoBridgeFieldException {
-        return getInstance().getExternalFieldImpl(instance, keyOfExternal);
-    }
-
     /**
-     * @param filePath Path to file
+     * @param file File
      * @return {@link com.github.marcoral.versatia.core.api.configuration.VersatiaConfigurationFile} object to process configuration file
      */
-    public static VersatiaConfigurationFile searchForConfigurationFile(String filePath) {
-        return getInstance().searchForConfigurationFileImpl(filePath);
+    public static VersatiaConfigurationFile searchForConfigurationFile(File file) {
+        return getInstance().searchForConfigurationFileImpl(file);
     }
     
     /**
@@ -86,7 +62,7 @@ public abstract class VersatiaTools {
     /* -------
      * BOILERPLATE
      * -------- */
-    @ExternalDependency("INSTANCE")
+    @ExternalDependency(ModuleDevelopmentTools.INSTANCE_KEY)
     private static VersatiaTools INSTANCE = null;
 
     private static VersatiaTools getInstance() {
@@ -102,9 +78,7 @@ public abstract class VersatiaTools {
     	}
     }
 
-    protected abstract <T> void injectExternalDependencyImpl(Class<? super T> containingClass, T instance, String fieldKey, Object value, boolean fieldSurelyExists);
-    protected abstract <T> T getExternalFieldImpl(Object instance, String keyOfExternal);
-    protected abstract VersatiaConfigurationFile searchForConfigurationFileImpl(String filePath);
+    protected abstract VersatiaConfigurationFile searchForConfigurationFileImpl(File file);
     protected abstract VersatiaConfigurationProcessor wrapConfigurationToVersatiaProcessorImpl(ConfigurationSection configurationSection);
     protected abstract void unpackFilesImpl(Plugin module, boolean overrideExisting);
 }

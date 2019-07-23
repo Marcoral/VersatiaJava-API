@@ -11,6 +11,7 @@ import com.github.marcoral.versatia.core.api.colors.CommandSenderColor;
 import com.github.marcoral.versatia.core.api.modules.VersatiaModule;
 import com.github.marcoral.versatia.core.api.modules.submodules.VersatiaModules;
 import com.github.marcoral.versatia.core.api.tools.ExternalDependency;
+import com.github.marcoral.versatia.core.api.tools.modules.ModuleDevelopmentTools;
 
 public abstract class VersatiaMessages {    
 	/**
@@ -92,7 +93,7 @@ public abstract class VersatiaMessages {
 	/* -------
      * BOILERPLATE
      * -------- */
-    @ExternalDependency("INSTANCE")
+    @ExternalDependency(ModuleDevelopmentTools.INSTANCE_KEY)
     private static VersatiaMessages INSTANCE = null;
 
     private static VersatiaMessages getInstance() {

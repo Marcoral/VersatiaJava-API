@@ -1,10 +1,14 @@
 package com.github.marcoral.versatia.core.api.modules;
 
 
+import java.util.Set;
+
 import org.bukkit.plugin.Plugin;
 
 import com.github.marcoral.versatia.core.api.configuration.VersatiaConfigurationFile;
+import com.github.marcoral.versatia.core.api.modules.messages.VersatiaMessageDescriptor;
 import com.github.marcoral.versatia.core.api.modules.messages.VersatiaMessageEntry;
+import com.github.marcoral.versatia.core.api.modules.messages.VersatiaMessages;
 import com.github.marcoral.versatia.core.api.modules.submodules.VersatiaModuleReloadResult;
 
 public interface VersatiaModule extends UnloadedModuleAccessSave {
@@ -45,12 +49,6 @@ public interface VersatiaModule extends UnloadedModuleAccessSave {
      * @return Message template object
      */
     VersatiaMessageEntry getMessageTemplateEntry(String key);
-    
-    /**
-     * @param path Path to configuration file
-     * @return Object wrapping {@link org.bukkit.configuration.file.FileConfiguration} object created using specified path
-     */
-    VersatiaConfigurationFile getConfig(String path);
 
     /**
      * Returns message template of specified key. 
@@ -65,7 +63,34 @@ public interface VersatiaModule extends UnloadedModuleAccessSave {
     }
     
     /**
+     * Returns message descriptor of specified key.
+     * @param key Message template's key
+     * @return Message descriptor
+     */
+    default VersatiaMessageDescriptor getMessageDescriptor(String key) {
+    	return VersatiaMessages.createTemplateDescriptor(getCorrespondingPlugin().getName(), key);
+    }
+    
+    /**
+     * @param path Path to configuration file
+     * @return Object wrapping {@link org.bukkit.configuration.file.FileConfiguration} object created using specified path
+     */
+    VersatiaConfigurationFile getConfig(String path);
+    
+    /**
+     * @param parentPath Relative path to file directory
+     * @param path Path to configuration file
+     * @return Object wrapping {@link org.bukkit.configuration.file.FileConfiguration} object created using specified path
+     */
+    VersatiaConfigurationFile getConfig(String parentPath, String path);
+    
+    /**
      * @return {@link Plugin} corresponding to this module
      */
     Plugin getCorrespondingPlugin();
+
+    /**
+     * @return Set of reloadable names (i.e. submodule names and group names)
+     */
+	Set<String> getReloadableNames();
 }

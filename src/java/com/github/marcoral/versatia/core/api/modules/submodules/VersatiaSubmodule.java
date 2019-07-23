@@ -16,7 +16,6 @@ public interface VersatiaSubmodule {
 	 * Reloads the submodule.
 	 */
     default void reload() {
-    	unload();
     	load();
     }
     
